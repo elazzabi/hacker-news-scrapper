@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "test": "ava"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "x-ray": "^2.3.2"
+  },
+  "devDependencies": {
+    "ava": "^0.19.1"
+  }
+}
