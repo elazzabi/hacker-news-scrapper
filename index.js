@@ -1,7 +1,7 @@
 const xray = require('x-ray')
 const Promise = require('bluebird')
 
-const url = "https://news.ycombinator.com/"
+const url = (page) => `https://news.ycombinator.com/news?p=${page}`
 
 const x = xray({
     filters: {
@@ -11,20 +11,20 @@ const x = xray({
     }
 });
 
-const getBasicInfo = Promise.promisify(x(url, '.athing', [{
+const getBasicInfo = (page) => Promise.promisify(x(url(page), '.athing', [{
     title: '.storylink',
     website: '.sitestr',
     link: '.storylink@href',
     rank: '.rank | removeDot'
 }]))
 
-const getOtherInfo = Promise.promisify(x(url, '.subtext', [{
+const getOtherInfo = (page) => Promise.promisify(x(url(page), '.subtext', [{
     score: '.score',
     user: '.hnuser',
     age: '.age'
 }]))
 
-const page = Promise.all([getBasicInfo(), getOtherInfo()]).then((scrapedData) => {
+const page = (index = 1) => Promise.all([getBasicInfo(index)(), getOtherInfo(index)()]).then((scrapedData) => {
     let [basic, other] = scrapedData
     let data = basic.reduce((all, curr, index) => {
         let o = Object.assign({}, curr, other[index])
