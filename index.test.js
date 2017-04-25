@@ -2,7 +2,13 @@ const page = require('./index').page
 const test = require('ava')
 
 let callback = (t, data) => {
-    t.is(data.length, 30)
+    t.is(data.length, 30, 'Every page has 30 link')
+
+    t.true(data.every((e => {
+        let has = (prop) => e.hasOwnProperty(prop)
+        
+        return has('link') && has('title') && has('website') && has('age')
+    })), 'Every element has a title, link, website and age')
 }
 
 test("Expect 'page' to work without arguments", t => {    
