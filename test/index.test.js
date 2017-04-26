@@ -1,4 +1,4 @@
-const page = require('./index').page
+const page = require('../src/index').page
 const test = require('ava')
 
 let callback = (t, data) => {
@@ -7,7 +7,7 @@ let callback = (t, data) => {
     t.true(data.every((e => {
         let has = (prop) => e.hasOwnProperty(prop)
         
-        return has('link') && has('title') && has('website') && has('age')
+        return has('link') && has('title') && has('age')
     })), 'Every element has a title, link, website and age')
 }
 

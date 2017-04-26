@@ -24,13 +24,13 @@ const getOtherInfo = (page) => Promise.promisify(x(url(page), '.subtext', [{
     age: '.age'
 }]))
 
-const page = (index = 1) => Promise.all([getBasicInfo(index)(), getOtherInfo(index)()]).then((scrapedData) => {
+const page = (index = 1) => Promise.all([getBasicInfo(index)(), getOtherInfo(index)()]).then(scrapedData => {
     let [basic, other] = scrapedData
 
     let data = basic.map((curr, index) => {
         return Object.assign({}, curr, other[index])
     })
-    
+
     return data
 })
 
