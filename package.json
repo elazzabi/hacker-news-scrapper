@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "compile": "babel --presets es2015 -d lib/ src/",
     "test": "ava"
   },
   "dependencies": {
@@ -7,6 +8,8 @@
     "x-ray": "^2.3.2"
   },
   "devDependencies": {
-    "ava": "^0.19.1"
+    "ava": "^0.19.1",
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1"
   }
 }
