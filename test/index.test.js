@@ -1,4 +1,4 @@
-const page = require('../src/index').page
+const page = require('../lib/index').page
 const test = require('ava')
 
 let callback = (t, data) => {
