@@ -1,15 +1,7 @@
-const xray = require('x-ray')
-const Promise = require('bluebird')
+import x from './scrapper'
+import Promise from 'bluebird'
 
 const url = (page) => `https://news.ycombinator.com/news?p=${page}`
-
-const x = xray({
-    filters: {
-        removeDot: function (value) {
-            return value.slice(0, value.length - 1)
-        }
-    }
-});
 
 const getBasicInfo = (page) => Promise.promisify(x(url(page), '.athing', [{
     title: '.storylink',
@@ -34,4 +26,4 @@ const page = (index = 1) => Promise.all([getBasicInfo(index)(), getOtherInfo(ind
     return data
 })
 
-module.exports = { page }
+export { page }
