@@ -1,5 +1,5 @@
-const page = require('../lib/index').page
-const test = require('ava')
+import { page } from '../lib/index'
+import test from 'ava'
 
 let callback = (t, data) => {
     t.is(data.length, 30, 'Every page has 30 link')
