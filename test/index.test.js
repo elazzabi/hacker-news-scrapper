@@ -18,3 +18,5 @@ test("Expect 'page' to work without arguments", t => {
 test("Expect 'page' to work with arguments", t => {
     return page(2).then(callback.bind(null, t))
 })
+
+// TODO: When item is added, add a test to check comments

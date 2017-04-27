@@ -13,7 +13,8 @@ const getBasicInfo = (page) => Promise.promisify(x(url(page), '.athing', [{
 const getOtherInfo = (page) => Promise.promisify(x(url(page), '.subtext', [{
     score: '.score',
     user: '.hnuser',
-    age: '.age'
+    age: '.age',
+    comments: 'td > a:last-of-type'
 }]))
 
 const page = (index = 1) => Promise.all([getBasicInfo(index)(), getOtherInfo(index)()]).then(scrapedData => {
